@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+       <li>{{ message }}</li>
+     {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+<form action="" method="POST">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/><br>
+  <label for="bid">Введите номер заявки:</label>
+  <input type="text" placeholder="Номер заявки" id="bid" name="bid" pattern="^[\d]+$" required><br>
+  <label for="email">Введите почту:</label>
+  <input type="email" placeholder="example@example.com" id="email" name="email" required><br>
+  <input type="submit" class="btn btn-primary" value="Отправить">
+</form>
+</body>
+</html>

@@ -4,6 +4,8 @@ import os
 import logging
 
 from flask import Flask
+from flask_recaptcha import ReCaptcha
+from flask_wtf.csrf import CsrfProtect
 
 import config
 from utils import StructEncoder, Logger
@@ -12,6 +14,11 @@ app = Flask(__name__)
 
 app.config.from_object('config')
 app.json_encoder = StructEncoder
+
+csrf = CsrfProtect()
+csrf.init_app(app)
+recaptcha = ReCaptcha(app)
+recaptcha.init_app(app)
 
 if not os.path.exists(config.LOG_TO):
     os.makedirs(config.LOG_TO)

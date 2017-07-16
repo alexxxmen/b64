@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/><br>
+  <label for="name">Введите Ваше имя*:</label>
+  <input type="text" id="name" name="name" placeholder="Имя" required><br>
+  <label for="email">Почта для связи*:</label>
+  <input type="email" id="email" name="email" placeholder="Почта" required><br>
+  <label for="account">Аккаунт в инстаграм:</label>
+  <input type="text" id="account" name="account" placeholder="Инстаграм аккаунт"><br>
+  <input type="submit" class="btn btn-primary" value="Отправить">
+</form>
+</body>
+</html>

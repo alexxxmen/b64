@@ -19,7 +19,6 @@ class StructEncoder(JSONEncoder):
         return super(StructEncoder, self).default(o)
 
 
-
 class Logger(object):
     def __init__(self, file_handler, logger_name):
         self._log = logging.getLogger(logger_name)
@@ -73,3 +72,7 @@ class Struct(object):
 
     def __unicode__(self):
         return unicode(self.to_dict())
+
+
+def get_request_data(request):
+    return dict(request.json or request.form.items() or {})

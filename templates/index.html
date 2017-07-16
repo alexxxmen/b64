@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Продвижение Вашего Инстаграм - Profinsta.com</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="keywords" content=""/>
+  <script type="application/x-javascript"> addEventListener("load", function () {
+    setTimeout(hideURLbar, 0);
+  }, false);
+  function hideURLbar() {
+    window.scrollTo(0, 1);
+  } </script>
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel='stylesheet' type='text/css'/>
+  <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
+        rel='stylesheet' type='text/css'>
+  <!---- start-smoth-scrolling---->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/move-top.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $(".scroll").click(function (event) {
+        event.preventDefault();
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+      });
+    });
+  </script>
+
+  <!--start-smoth-scrolling-->
+</head>
+<body>
+<!--start-banner-->
+<div class="banner" id="home">
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <a href="/">PROFINSTA<span class="logo-postfix">.com</span></a>
+      </div>
+      <div class="navigation">
+        <span class="menu"></span>
+        <ul class="navig">
+          <li><a href="#pricing" class="scroll">Заказать</a></li>
+          <li><a href="#text-about" class="scroll">О сервисе</a></li>
+          <li><a href="#advantages" class="scroll">Возможности</a></li>
+          <li><a href="#pricing" class="scroll">Услуги</a></li>
+          <li><a href="{{ url_for("pay") }}" >Оплата</a></li>
+          <li><a href="#rewiews" class="scroll">Отзывы</a></li>
+          <li><a href="#faq" class="scroll">FAQ</a></li>
+          <li><a href="#contact" class="scroll">Связаться</a></li>
+        </ul>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="banner-btm">
+      <div id="top" class="callbacks_container">
+        <div class="banner-bottom">
+          <h1>Продвижение Вашего аккаунта в "Инстаграм"</h1>
+          <p>Подзаголовок с интересными деталями нашего сервиса</p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div><a href="{{ url_for("bid") }}" class="bid">Заказать</a></div>
+    </div>
+  </div>
+</div>
+<!-- script-for-menu -->
+<script>
+  $("span.menu").click(function () {
+    $(" ul.navig").slideToggle("slow", function () {
+    });
+  });
+</script>
+<!-- script-for-menu -->
+<!--Slider-Starts-Here-->
+<script src="{{ url_for('static', filename='js/responsiveslides.min.js') }}"></script>
+<script>
+  // You can also use "$(window).load(function() {"
+  $(function () {
+    // Slideshow 4
+    $("#slider4").responsiveSlides({
+      auto: true,
+      pager: true,
+      nav: true,
+      speed: 500,
+      namespace: "callbacks",
+      before: function () {
+        $('.events').append("<li>before event fired.</li>");
+      },
+      after: function () {
+        $('.events').append("<li>after event fired.</li>");
+      }
+    });
+
+  });
+</script>
+<!--End-slider-script-->
+<!--end-banner-->
+<!--start-about-->
+<div class="about" id="text-about">
+  <div class="client">
+    <div class="about-main">
+      <img src="{{ url_for('static', filename='img/abt-1.png') }}" alt=""/>
+      <h3>Супер Пупер Продающий Текст</h3>
+      <p>Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.
+        Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.
+        Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.
+        Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.
+        Epsum factorial non deposit quid pro quo hic escorol. Olypian quarrels et gorilla congolium sic ad nauseum.</p>
+    </div>
+  </div>
+  <div class="container" id="advantages">
+    <div class="about-bottom">
+      <div class="about-main">
+
+        <h3>Наши Возможности</h3>
+      </div>
+      <div class="abt">
+
+        <div class="col-md-4 about-left">
+
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="hnd"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Built with Bootstrap 3.0</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-md-4 about-left">
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="d"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Responsive Design</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-md-4 about-left">
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="ar"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Retine Display</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="abt">
+        <div class="col-md-4 about-left">
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="flg"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Theme Builder</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-md-4 about-left">
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="flr"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Support</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="col-md-4 about-left">
+          <div class="abt-one">
+            <div class="abt-left">
+              <span class="ard"> </span>
+            </div>
+            <div class="abt-right">
+              <h4>Versioning</h4>
+              <p>aliquam ipsum ante morbi sed ipsum mollis. Sollicitudin viverra, vel varius eget sit mollis.</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end-about-->
+<!--start-special-->
+<div class="special" id="features">
+  <div class="container">
+    <div class="special-top">
+      <div class="col-md-3 spl-left">
+        <div class="spl-one">
+          <span class="sml"> </span>
+          <h4>Клиенты довольные результатом</h4>
+          <p>120+</p>
+        </div>
+      </div>
+      <div class="col-md-3 spl-left">
+        <div class="spl-one">
+          <span class="wtp"></span>
+          <h4>Профессиональные менеджеры</h4>
+          <p>3</p>
+        </div>
+      </div>
+      <div class="col-md-3 spl-left">
+        <div class="spl-one">
+          <span class="hnd"></span>
+          <h4>Уникальные стратегии расскрутки</h4>
+          <p>9</p>
+        </div>
+      </div>
+      <div class="col-md-3 spl-left">
+        <div class="spl-one">
+          <span class="dar"> </span>
+          <h4>Только качественные технологии</h4>
+          <p>5+</p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="do-bid"><a href="" class="bid">Оформить Заявку</a></div>
+
+    <div class="special-bottom" id="products">
+      <img src="{{ url_for('static', filename='img/spl.png') }}" alt=""/>
+      <h3>Что вы получаете, когда используете наш сервис</h3>
+      <p>Команда проффесионалов каждый день трудится в поте лица и обеспечивает лучший сервис для наших клиентов.</p>
+    </div>
+    <div class="special-btm">
+      <div class="portfolios entertain_box  wow fadeInUp" data-wow-delay="0.4s" id="portfolio">
+        <div class="portfolio-top">
+          <div id="portfoliolist">
+            <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-1.jpg') }}" class="b-link-stripe b-animate-go   swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-1.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left b-delay03 ">Processing Steps Web</h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-2.jpg') }}" class="b-link-stripe b-animate-go   swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-2.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Processing Steps Web</h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio photo mix_all" data-cat="photo" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-3.jpg') }}" class="b-link-stripe b-animate-go   swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-3.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Processing Steps Web</h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio card mix_all" data-cat="card" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-4.jpg') }}" class="b-link-stripe b-animate-go   swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-4.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left    b-delay03 ">Processing Steps Web</h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio photo mix_all" data-cat="photo" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-5.jpg') }}" class="b-link-stripe b-animate-go   swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-5.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left b-delay03 ">Processing Steps Web </h2>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="portfolio app mix_all" data-cat="app" style="display: inline-block; opacity: 1;">
+              <div class="portfolio-wrapper">
+                <a href="{{ url_for('static', filename='img/p-6.jpg') }}" class="b-link-stripe b-animate-go  swipebox" title="Image Title">
+                  <img src="{{ url_for('static', filename='img/port-6.jpg') }}"/>
+                  <div class="b-wrapper"><h2 class="b-animate b-from-left b-delay03 ">Processing Steps Web</h2>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end-special-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/swipebox.css') }}">
+<script src="{{ url_for('static', filename='js/jquery.swipebox.min.js') }}"></script>
+<script type="text/javascript">
+  jQuery(function ($) {
+    $(".swipebox").swipebox();
+  });
+</script>
+<!-- Portfolio Ends Here -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mixitup.min.js') }}"></script>
+<script type="text/javascript">
+  $(function () {
+
+    var filterList = {
+
+      init: function () {
+
+        // MixItUp plugin
+        // http://mixitup.io
+        $('#portfoliolist').mixitup({
+          targetSelector: '.portfolio',
+          filterSelector: '.filter',
+          effects: ['fade'],
+          easing: 'snap',
+          // call the hover effect
+          onMixEnd: filterList.hoverEffect()
+        });
+
+      },
+
+      hoverEffect: function () {
+
+        // Simple parallax effect
+        $('#portfoliolist .portfolio').hover(
+          function () {
+            $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+            $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
+          },
+          function () {
+            $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+            $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
+          }
+        );
+
+      }
+
+    };
+
+// Run the show!
+    filterList.init();
+
+  });
+</script>
+
+<!--start-pricing-->
+<div class="pricing" id="">
+  <div class="container">
+    <div class="pricing-top">
+      <img id="pricing" src="{{ url_for('static', filename='img/price-1.png') }}" alt=""/>
+      <h3>Услуги</h3>
+      <p>Мы тщательно подобрали для Вас лучшие возможности</p>
+    </div>
+    <div class="pricing-bottom">
+      <div class="col-md-3 pricing-left">
+        <div class="price-one">
+          <h4>FREE</h4>
+          <span></span>
+          <h6><sup>$</sup>0<sub>/3 days</sub></h6>
+          <p>1000 лайков/день</p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <div class="p-btn">
+            <a href="" class="po-bid">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pricing-left">
+        <div class="price-one">
+          <h4>BASIC</h4>
+          <span></span>
+          <h6><sup>$</sup>25<sub>/month</sub></h6>
+          <p>1000 лайков/день</p>
+          <p>Unlimited Forums</p>
+          <p>Unlimited Reports</p>
+          <p>3,000 Entries per Month</p>
+          <p>200 MB Storage</p>
+          <p>Unlimited Support</p>
+          <div class="p-btn">
+            <a href="" class="po-bid">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pricing-left active">
+        <div class="price-one">
+          <h4>PRO</h4>
+          <span></span>
+          <h6><sup>$</sup>25<sub>/month</sub></h6>
+          <p>1000 лайков/день</p>
+          <p>Unlimited Forums</p>
+          <p>Unlimited Reports</p>
+          <p>3,000 Entries per Month</p>
+          <p>200 MB Storage</p>
+          <p>Unlimited Support</p>
+          <div class="p-btn">
+            <a href="" class="po-bid">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 pricing-left">
+        <div class="price-one">
+          <h4>PRO++</h4>
+          <span></span>
+          <h6><sup>$</sup>25<sub>/month</sub></h6>
+          <p>60 Users</p>
+          <p>Unlimited Forums</p>
+          <p>Unlimited Reports</p>
+          <p>3,000 Entries per Month</p>
+          <p>200 MB Storage</p>
+          <p>Unlimited Support</p>
+          <div class="p-btn">
+            <a href="#" class="po-bid">Заказать</a>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!--end-pricing-->
+<!--start-testimonials-->
+<div class="test" id="testimonials">
+  <div class="container">
+    <div class="test-top">
+      <img src="{{ url_for('static', filename='img/test-1.png') }}" alt=""/>
+      <h3 id="rewiews">Отзывы наших клиентов</h3>
+      <p>Мы очень благодарны за столь щедрые отзывы, что не можем не выложить некоторые из них</p>
+    </div>
+    <div class="test-bottom">
+      <div class="col-md-4 test-bottom-left">
+        <div class="test-left">
+          <p><span>@atom</span> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
+            nulla sem fringilla, purus enim amet, nascetur faucibus, adipiscing neque ut bibendum, at felis nec in.
+            Mauris ultricies, et pede id potenti in nec, mi elit rhoncus ligula, mollis lacus congue scelerisque magna.
+          </p>
+          <div class="test-btm">
+            <div class="test-1">
+              <img src="{{ url_for('static', filename='img/test-2.png') }}" alt=""/>
+            </div>
+            <div class="test-2">
+              <h4>Данил Воронин</h4>
+              <label>Manchester, UK</label>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 test-bottom-left">
+        <div class="test-left">
+          <p><span>@atom</span> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
+            nulla sem fringilla, purus enim amet, nascetur faucibus, adipiscing neque ut bibendum, at felis nec in.
+            Mauris ultricies, et pede id potenti in nec, mi elit rhoncus ligula, mollis lacus congue scelerisque magna.
+          </p>
+          <div class="test-btm">
+            <div class="test-1">
+              <img src="{{ url_for('static', filename='img/test-3.png') }}" alt=""/>
+            </div>
+            <div class="test-2">
+              <h4>Christine Heal</h4>
+              <label>Bristol, UK</label>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 test-bottom-left">
+        <div class="test-left">
+          <p><span>@atom</span> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
+            nulla sem fringilla, purus enim amet, nascetur faucibus, adipiscing neque ut bibendum, at felis nec in.
+            Mauris ultricies, et pede id potenti in nec, mi elit rhoncus ligula, mollis lacus congue scelerisque magna.
+          </p>
+          <div class="test-btm">
+            <div class="test-1">
+              <img src="{{ url_for('static', filename='img/test-4.png') }}" alt=""/>
+            </div>
+            <div class="test-2">
+              <h4>Abraham Doe</h4>
+              <label>Bristol, UK</label>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!--end-testimonials-->
+<!--start-account-->
+<div class="account" id="order">
+  <div class="container">
+    <div class="account-main">
+      <div class="col-md-8 account-left">
+        <p>Нажмите на кнопку "Создать Заявку" прямо сейчас для бесплатной консультации.</p>
+      </div>
+      <div class="col-md-4 account-right" id="account-main-bid">
+        <a class="play-icon popup-with-zoom-anim" href=""><span>Создать Заявку </span></a>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<!--end-account-->
+<div class="faq" id="faq">
+  <div class="container">
+    <div class="faq-top">
+      <img src="{{ url_for('static', filename='img/price-1.png') }}" alt=""/>
+      <h3>FAQ</h3>
+    </div>
+    <div class="faq-elem">
+      <p class="question">Что тут за хрень?</p>
+      <p class="faq-sub-elem hidden">Тут все ок это факю с часто задаваемыми вопросами</p>
+    </div>
+
+    <div class="faq-elem">
+      <p class="question">Да? я вам не верю. Где гарантии</p>
+      <p class="faq-sub-elem hidden">Тут все ок это факю с часто задаваемыми вопросами</p>
+    </div>
+
+    <div class="faq-elem">
+      <p class="question">Что тут за хрень?</p>
+      <p class="faq-sub-elem hidden">Тут все ок это факю с часто задаваемыми вопросами</p>
+    </div>
+
+    <div class="faq-elem">
+      <p class="question">Что тут за хрень?</p>
+      <p class="faq-sub-elem hidden">Тут все ок это факю с часто задаваемыми вопросами</p>
+    </div>
+  </div>
+</div>
+<!--start-contact-->
+<div class="contact" id="contact">
+  <div class="container">
+    <div class="contact-top">
+      <img src="{{ url_for('static', filename='img/spl.png') }}" alt=""/>
+      <h3>Связаться с нами</h3>
+      <p>Если у вас возникли какие либо вопросы оставьте свое сообщение. Мы обязательно с вами свяжемся.</p>
+    </div>
+    <div class="contact-bottom">
+      <form action="">
+        <input type="text" value="Your Name" onfocus="this.value = '';"
+               onblur="if (this.value == '') {this.value = 'Your Name';}"/>
+        <input type="text" value="Your Email" onfocus="this.value = '';"
+               onblur="if (this.value == '') {this.value = 'Your Email';}"/>
+        <textarea value="Your Message" onfocus="this.value = '';"
+                  onblur="if (this.value == '') {this.value = 'Your Message';}">Your Message</textarea>
+        <div class="contact-but">
+          <input type="submit" value="ОТПРАВИТЬ СООБЩЕНИЕ"/>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<!--end-contact-->
+
+<div class="footer">
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({easingType: 'easeOutQuart'});
+    });
+    $('.faq-elem').on('click', function () {
+      var p = $(this).find('.faq-sub-elem');
+      if (p.hasClass('hidden')) {
+        p.removeClass('hidden');
+      } else {
+        p.addClass('hidden');
+      }
+
+    })
+  </script>
+  <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</div>
+<!--end-footer-->
+</body>
+</html>
