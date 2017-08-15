@@ -3,14 +3,13 @@
 from flask import url_for, render_template
 
 from models import Bid
-from constants import BidStatus
+from constants import BidStatus, OperationType
 from controllers import TemplateController, ServiceException
 
 
 class PayController(TemplateController):
     def __init__(self, request):
-        super(PayController, self).__init__(request)
-        self.error_view = url_for("common_error")
+        super(PayController, self).__init__(request, OperationType.Pay)
 
     def _call(self):
         if self.request.method == 'GET':

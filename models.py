@@ -1,8 +1,10 @@
 # -*- coding:utf-8 -*-
 
 from playhouse.postgres_ext import PostgresqlExtDatabase
-from peewee import (Model, CharField, DateTimeField, TextField,
+from peewee import (Model, CharField, DateTimeField, TextField, ForeignKeyField,
                     datetime as peewee_datetime, DoubleField, SmallIntegerField)
+
+from playhouse.postgres_ext import JSONField
 
 from utils import Struct
 from config import DB_CONFIG
@@ -44,6 +46,7 @@ class Bid(_Model):
     amount = DoubleField(null=True)
     status = SmallIntegerField(default=BidStatus.New)
     created = DateTimeField(default=peewee_datetime.datetime.now)
+    updated = DateTimeField(null=True)
 
     @classmethod
     def new(cls, name, email, account):
@@ -67,4 +70,22 @@ class ClientLog(_Model):
     finished = DateTimeField()
     request_method = CharField()
     traceback = TextField(null=True)
+    created = DateTimeField(default=peewee_now)
+    bid = ForeignKeyField(Bid, null=True)
+    operation_type = SmallIntegerField()
+    manager_id = SmallIntegerField(null=True)
+    operation_result = JSONField(null=True)
+
+
+class ErrorLog(_Model):
+    class Meta:
+        db_table = "error_logs"
+
+    request_data = TextField()
+    request_ip = CharField()
+    request_url = CharField()
+    request_method = CharField()
+    error = TextField()
+    traceback = TextField(null=True)
     created = DateTimeField(default=peewee_datetime.datetime.now)
+    request_headers = TextField()

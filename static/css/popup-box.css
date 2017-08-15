@@ -284,7 +284,7 @@ button::-moz-focus-inner {
 .signup input[type="text"]{
 	width:44.5%;
 	padding:5px;
-	margin:10px 0;x
+	margin:10px 0;
 	outline: none !important;
 	outline: none;
 	color: #cacaca;
@@ -292,7 +292,7 @@ button::-moz-focus-inner {
 .signup input.email[type="text"],.signup input[type="password"]{
 	width:90%;
 	padding:5px;
-	margin:10px 0;x
+	margin:10px 0;
 	outline: none !important;
 	outline: none;
 	color: #cacaca;

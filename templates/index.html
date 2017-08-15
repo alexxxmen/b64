@@ -45,7 +45,6 @@
           <li><a href="#text-about" class="scroll">О сервисе</a></li>
           <li><a href="#advantages" class="scroll">Возможности</a></li>
           <li><a href="#pricing" class="scroll">Услуги</a></li>
-          <li><a href="{{ url_for("pay") }}" >Оплата</a></li>
           <li><a href="#rewiews" class="scroll">Отзывы</a></li>
           <li><a href="#faq" class="scroll">FAQ</a></li>
           <li><a href="#contact" class="scroll">Связаться</a></li>
@@ -62,7 +61,7 @@
         </div>
       </div>
       <div class="clearfix"></div>
-      <div><a href="{{ url_for("bid") }}" class="bid">Заказать</a></div>
+      <div><a href="{{ url_for("bid") }}" class="bid-btn top-bid-btn">Заказать</a></div>
     </div>
   </div>
 </div>
@@ -235,7 +234,7 @@
       </div>
       <div class="clearfix"></div>
     </div>
-    <div class="do-bid"><a href="" class="bid">Оформить Заявку</a></div>
+    <div class="do-bid"><a href="{{ url_for("bid") }}" class="bid-btn ">Оформить Заявку</a></div>
 
     <div class="special-bottom" id="products">
       <img src="{{ url_for('static', filename='img/spl.png') }}" alt=""/>
@@ -382,7 +381,7 @@
           <p></p>
           <p></p>
           <div class="p-btn">
-            <a href="" class="po-bid">Заказать</a>
+            <a href="{{ url_for("bid") }}" class="service-bid-btn">Заказать</a>
           </div>
         </div>
       </div>
@@ -398,7 +397,7 @@
           <p>200 MB Storage</p>
           <p>Unlimited Support</p>
           <div class="p-btn">
-            <a href="" class="po-bid">Заказать</a>
+            <a href="{{ url_for("bid") }}" class="service-bid-btn">Заказать</a>
           </div>
         </div>
       </div>
@@ -414,7 +413,7 @@
           <p>200 MB Storage</p>
           <p>Unlimited Support</p>
           <div class="p-btn">
-            <a href="" class="po-bid">Заказать</a>
+            <a href="{{ url_for("bid") }}" class="service-bid-btn">Заказать</a>
           </div>
         </div>
       </div>
@@ -430,7 +429,7 @@
           <p>200 MB Storage</p>
           <p>Unlimited Support</p>
           <div class="p-btn">
-            <a href="#" class="po-bid">Заказать</a>
+            <a href="{{ url_for("bid") }}" class="service-bid-btn">Заказать</a>
           </div>
         </div>
       </div>
@@ -451,7 +450,7 @@
       <div class="col-md-4 test-bottom-left">
         <div class="test-left">
           <p><span>@atom</span> I love this #app. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet
-            nulla sem fringilla, purus enim amet, nascetur faucibus, adipiscing neque ut bibendum, at felis nec in.
+            nulla sem fringilla, purus enim ame, nascetur faucibus, adipiscing neque ut bibendum, at felis nec in.
             Mauris ultricies, et pede id potenti in nec, mi elit rhoncus ligula, mollis lacus congue scelerisque magna.
           </p>
           <div class="test-btm">
@@ -512,10 +511,10 @@
   <div class="container">
     <div class="account-main">
       <div class="col-md-8 account-left">
-        <p>Нажмите на кнопку "Создать Заявку" прямо сейчас для бесплатной консультации.</p>
+        <p>Нажмите на кнопку "Создать Заявку" прямо сейчас и получите бесплатную консультацию</p>
       </div>
       <div class="col-md-4 account-right" id="account-main-bid">
-        <a class="play-icon popup-with-zoom-anim" href=""><span>Создать Заявку </span></a>
+        <a class="bid-btn play-icon popup-with-zoom-anim" href="{{ url_for("bid") }}"><span>Создать Заявку </span></a>
       </div>
       <div class="clearfix"></div>
     </div>

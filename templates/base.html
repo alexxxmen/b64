@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>{% block title %}{% endblock %} - Profinsta.com</title>
+  {% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.toastmessage.css') }}">
+  {% endblock css %}
+</head>
+  <body>
+    {% block content %}{% endblock content %}
+    {% block footer %}{% endblock footer %}
+    {% block javascript %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.0.min.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.toastmessage.js')}}"></script>
+    {% endblock javascript %}
+    <script type="text/javascript">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% set message_category = 'showSuccessToast' if category != "message" else "showErrorToast" %}
+          $().toastmessage('{{ message_category }}', '{{ message }}');
+         {% endfor %}
+      {% endif %}
+    {% endwith %}
+    </script>
+
+    </div>
+  </body>
+</html>

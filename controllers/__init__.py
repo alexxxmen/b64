@@ -7,7 +7,7 @@ import traceback
 from flask import flash, redirect, url_for
 
 from storm import fh
-from models import ClientLog
+from models import ClientLog, ErrorLog
 from utils import Logger, get_request_data, Struct
 
 
@@ -19,17 +19,21 @@ class ServiceException(Exception):
 
 
 class BaseController(object):
-    def __init__(self, request):
+    def __init__(self, request, operation_type, account=None):
         self.class_name = self.__class__.__name__
         self.log = Logger(fh, self.class_name)
         self.request = request
-        self.error_view = request.full_path
+        self.error_view = url_for("common_error")
         self.db_logger = ClientLog(request_ip=request.remote_addr,
                                    request_url=request.url,
                                    request_headers=request.headers,
                                    request_method=self.request.method,
-                                   request_data=get_request_data(self.request))
+                                   request_data=get_request_data(self.request),
+                                   operation_type=operation_type,
+                                   account=account,
+                                   created=datetime.datetime.now())
         self.need_log = True
+        self.confidential_fields = ()
 
     def _call(self, *args, **kwds):
         raise NotImplementedError("%s._call" % self.class_name)
@@ -41,6 +45,12 @@ class BaseController(object):
                 raise ServiceException("Invalid request, '%s' is required" % r)
 
         return Struct(**request_data)
+
+    def get_cleaned_request_data(self):
+        request_data = get_request_data(self.request)
+        for field in self.confidential_fields:
+            request_data.pop(field, None)
+        return request_data
 
     def _verify_email(self, email):
         email = email.strip().lower()
@@ -56,12 +66,11 @@ class BaseController(object):
         return email
 
 
-
 class TemplateController(BaseController):
     def call(self, *args, **kwds):
         result = None
         try:
-            self.log.debug("Started process request: %s" % get_request_data(self.request))
+            self.log.debug("Started process request: %s" % self.get_cleaned_request_data())
             data = self._call(*args, **kwds)
             self.log.debug("Finished")
             result = data
@@ -76,6 +85,15 @@ class TemplateController(BaseController):
             self.db_logger.traceback = traceback.format_exc()
             self.log.exception("Error during %s call" % self.class_name)
             flash(ex.message)
+            ErrorLog.create(
+                request_data=get_request_data(self.request),
+                request_ip=self.request.remote_addr,
+                request_url=self.request.url,
+                request_method=self.request.method,
+                error=ex.message,
+                traceback=traceback.format_exc(),
+                request_headers=self.request.headers
+            )
             result = redirect(url_for("common_error"))
 
         finally:

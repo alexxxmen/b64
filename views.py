@@ -7,11 +7,15 @@ from datetime import datetime
 from flask import jsonify, request, render_template, get_flashed_messages
 
 from storm import app, log
-from models import ClientLog
 from utils import get_request_data
+from decorators import login_required
+from models import ErrorLog, ClientLog
 from controllers.bid import BidController
 from controllers.pay import PayController
 from controllers.index import IndexController
+from controllers.login import LoginController
+from controllers.logout import LogoutController
+from controllers.manage_bids import (BidViewController, EditBidController)
 from controllers.support import SendSupportMessageController
 
 
@@ -54,17 +58,41 @@ def pay():
     return PayController(request).call()
 
 
+@app.route("/xdoor/bids", methods=["GET", "POST"])
+@login_required
+def bids(manager):
+    return BidViewController(request, manager).call()
+
+
+@app.route("/xdoor/bids/edit", methods=["GET", "POST"])
+@login_required
+def edit_bid(manager):
+    return EditBidController(request, manager).call()
+
+
+@app.route("/xdoor/login", methods=["GET", "POST"])
+def login():
+    return LoginController(request).call()
+
+
+@app.route("/xdoor/logout")
+@login_required
+def logout(manager):
+    return LogoutController(request, manager).call()
+
+
 @app.route("/logs/client_logs")
 @jsonify_result
 def logs():
-    return {"logs": [l.to_dict() for l in ClientLog.select().order_by(ClientLog.id.desc())]}
+    log_type = {'client': ClientLog, 'error': ErrorLog}
+    return {"logs": [l.to_dict() for l in ErrorLog.select().order_by(ErrorLog.id.desc())]}
 
 
 @app.errorhandler(404)
 @app.errorhandler(405)
 @app.errorhandler(500)
 def handle_http_error(error):
-    db_error = ClientLog.create(
+    db_error = ErrorLog.create(
         error=error,
         request_ip=request.remote_addr,
         request_url=request.url,
@@ -84,7 +112,7 @@ def handle_http_error(error):
 
 @app.errorhandler(Exception)
 def handle_exception(error):
-    db_error = ClientLog.create(
+    db_error = ErrorLog.create(
         error=error,
         request_ip=request.remote_addr,
         request_url=request.url,

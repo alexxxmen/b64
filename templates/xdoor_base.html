@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <title>{% block title %}{% endblock %} - Profinsta.com</title>
+  {% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  {% endblock css %}
+</head>
+  <body>
+    {% block header %}
+
+    <div class="main-container">
+      <div id="top-panel" class="row">
+        {% if g.manager %}
+        <div id="user-panel" class="row">
+          <div id="top-menu">
+            <ul>
+              <li><a href="{{ url_for('index') }}">Главная</a></li>
+              <li><a href="{{ url_for('bids') }}">Заявки</a></li>
+            </ul>
+          </div>
+          <div id="user-info">
+            <span><a href="{{ url_for('logout') }}">Выйти</a></span>
+          </div>
+        </div>
+        {% else %}
+        <div id="user-panel" class="row">
+          <div id="top-menu">
+            <ul>
+              <li><a href="{{ url_for('index') }}">Главная</a></li>
+            </ul>
+          </div>
+        </div>
+        {% endif %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul>
+          {% for message in messages %}
+            <li style="color: #b00000">{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      </div>
+
+    {% endblock header %}
+
+    {% block content %}{% endblock content %}
+    {% block footer %}{% endblock footer %}
+    {% block javascript %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-1.11.0.min.js')}}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    {% endblock javascript %}
+
+    </div>
+  </body>
+</html>

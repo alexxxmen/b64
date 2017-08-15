@@ -1,11 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Success Bid</title>
-</head>
-<body>
-Заявка отправлена успешно. Номер заявки: {{ bid.id }}<br>
-В ближайшее время по почте указанной в заявке с вами свяжеться наш мереджер.
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Оформление заявки{% endblock %}
+
+{% block content %}
+  <!--start-banner-->
+<div class="banner" id="home">
+  <div class="container">
+    <div class="header">
+      <div class="logo">
+        <a href="/">PROFINSTA<span class="logo-postfix">.com</span></a>
+      </div>
+      <div class="navigation">
+        <span class="menu"></span>
+        <ul class="navig">
+          <li><a href="{{ url_for('index') }}" class="scroll">Вернуться на главную</a></li>
+        </ul>
+      </div>
+
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</div>
+<div class="bid-banner">
+  <div class="container">
+    <div class="row">
+      <div class="absolute-center is-responsive">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+          <div class="bid-success-info">
+            <h2 class="text-center">Заявка отправлена успешно.</h2><br>
+            <h4 class="text-center">Номер заявки: {{ bid.id }}<br><br>
+            В ближайшее время по почте указанной в заявке с Вами свяжется квалифицированный специалист для подтверждения заявки и уточнения деталей.</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

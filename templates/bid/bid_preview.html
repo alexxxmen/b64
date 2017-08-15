@@ -1,0 +1,51 @@
+{% extends 'xdoor_base.html' %}
+{% block title %}Управление заявками{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <h3 class="text-center">Заявка № {{ bid.id }}</h3>
+        <form action="{{ url_for("edit_bid") }}" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <input type="hidden" name="bid" value="{{ bid.id }}">
+          <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
+            <div class="form-group">
+              <label for="client">Имя клиента:</label>
+              <input class="form-control" type="text" id="client" value="{{ bid.name }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="email">Почта клиента:</label>
+              <input class="form-control" type="text" id="email" value="{{ bid.email }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="account">Аккаунт в инстаграм:</label>
+              <input class="form-control" type="text" name="account" id="account" value="{{ bid.account }}">
+            </div>
+            <div class="form-group">
+              <label for="amount">Сумма заявки:</label>
+              <input class="form-control" type="text" name="amount" id="amount" value="{{ bid.amount or '' }}">
+            </div>
+            <div class="form-group">
+              <label for="status" >Статус:</label>
+              <select name="status" id="status" class="form-control">
+                {% for status, alias in statuses.items() %}
+                  <option value="{{ status }}" {% if bid.status == status %}selected{% endif %}>{{ alias }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="client">Создана:</label>
+              <input class="form-control" type="text" id="client" value="{{ bid.created }}" disabled>
+            </div>
+            <div class="form-group">
+              <label for="client">Изменена:</label>
+              <input class="form-control" type="text" id="client" value="{{ bid.updated }}" disabled>
+            </div>
+
+            <input type="submit" id="sign-in-btn" class="btn btn-block" value="Сохранить">
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}

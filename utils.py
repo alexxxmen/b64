@@ -76,3 +76,9 @@ class Struct(object):
 
 def get_request_data(request):
     return dict(request.json or request.form.items() or {})
+
+
+def format_datetime(dt, ft='%d.%m.%Y %H:%M:%S'):
+    if dt is None:
+        return ''
+    return dt.strftime(ft)
