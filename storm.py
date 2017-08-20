@@ -8,6 +8,7 @@ from flask_recaptcha import ReCaptcha
 from flask_wtf.csrf import CsrfProtect
 
 import config
+from models import db
 from utils import StructEncoder, Logger
 
 app = Flask(__name__)
@@ -35,5 +36,18 @@ peewee_log = Logger(pw_fh, "peewee")
 log = Logger(fh, "Cebero")
 
 log.info("Storm service started!")
+
+
+# This hook ensures that the connection is closed when we've finished
+# processing the request.
+@app.teardown_request
+def _db_close(exc):
+    if not db.is_closed():
+        db.close()
+
+
+@app.before_request
+def before():
+    db.connect()
 
 import views
