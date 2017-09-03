@@ -10,7 +10,7 @@ import traceback
 
 from flask import flash, redirect, url_for
 
-from storm import fh, mail
+from storm import fh, mail, recaptcha
 from config import ENCODE_NUM, TELEGRAM_BOT_TOKEN as bot_token, TELEGRAM_BOT_URL as bot_api_url
 from models import ClientLog, ErrorLog, Bid
 from utils import Logger, get_request_data, Struct
@@ -132,6 +132,10 @@ class BaseController(object):
 
         self.log.debug("Error during send alarm msg. Error description = %s" %
                        response.json().get('description', ''))
+
+    def _verify_recaptcha(self):
+        if not recaptcha.verify():
+            raise IncorrectCaptchaException("Recaptcha verification failed")
 
 
 class TemplateController(BaseController):

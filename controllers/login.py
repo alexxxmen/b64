@@ -22,8 +22,8 @@ class LoginController(TemplateController):
             return render_template("login.html", next=self.request.args.get("next"))
 
         self.error_view = self.request.full_path
+        self._verify_recaptcha()
         form_data = self._verify_post_request(('password', 'login'))
-        # self._verify_recaptcha(form_data.login) todo
         manager = self._verify_manager(form_data.login)
         self._check_hashed_password(manager, form_data.password)
 

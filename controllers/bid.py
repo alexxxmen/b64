@@ -3,10 +3,9 @@
 from flask import render_template
 
 from models import Bid
-from storm import recaptcha
 from constants import OperationType
 from config import TELEGRAM_MANAGER_IDS
-from controllers import TemplateController, IncorrectCaptchaException
+from controllers import TemplateController
 
 
 class BidController(TemplateController):
@@ -40,7 +39,3 @@ class BidController(TemplateController):
             self._send_email("Didn't send telegram msg to %s" % without_inform)
 
         return render_template("bid/success_bid.html", bid=bid)
-
-    def _verify_recaptcha(self):
-        if not recaptcha.verify():
-            raise IncorrectCaptchaException("Recaptcha verification failed")
