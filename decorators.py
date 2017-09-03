@@ -4,7 +4,7 @@ from functools import wraps
 
 from flask import session, request, redirect, url_for, flash, g
 
-from config import ADMINS
+from config import MANAGERS
 
 
 def get_manager():
@@ -12,7 +12,7 @@ def get_manager():
     if not manager_id:
         return None
 
-    manager = ADMINS.get(int(manager_id), None)
+    manager = MANAGERS.get(int(manager_id), None)
     return manager
 
 

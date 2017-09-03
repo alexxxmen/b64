@@ -4,6 +4,7 @@ import os
 import logging
 
 from flask import Flask
+from flask_mail import Mail
 from flask_recaptcha import ReCaptcha
 from flask_wtf.csrf import CsrfProtect
 
@@ -16,6 +17,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.json_encoder = StructEncoder
 
+mail = Mail(app)
 csrf = CsrfProtect()
 csrf.init_app(app)
 recaptcha = ReCaptcha(app)
@@ -33,7 +35,7 @@ pw_fh.setLevel(config.LOGGER.level)
 pw_fh.setFormatter(config.LOGGER.formatter)
 
 peewee_log = Logger(pw_fh, "peewee")
-log = Logger(fh, "Cebero")
+log = Logger(fh, "Storm")
 
 log.info("Storm service started!")
 

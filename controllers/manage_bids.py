@@ -7,7 +7,7 @@ from flask import render_template, flash, url_for
 from models import Bid
 from utils import format_datetime
 from constants import OperationType, BidStatus
-from controllers import TemplateController, ServiceException
+from controllers import TemplateController, ServiceException, JsonController, BidIDCoder
 
 
 class BidViewController(TemplateController):
@@ -85,7 +85,7 @@ class EditBidController(TemplateController):
         if not status:
             return None
 
-        if int(status) not in (BidStatus.New, BidStatus.Verified):
+        if int(status) not in BidStatus.to_dict():
             raise ServiceException("Invalid bid status=%s" % status)
 
         return int(status)
@@ -111,3 +111,20 @@ class EditBidController(TemplateController):
         bid.created = format_datetime(bid.created)
         bid.updated = format_datetime(bid.updated)
         return bid
+
+
+class GeneratePayUrlController(JsonController):
+    request_required = ("bid_id",)
+
+    def __init__(self, request, manager):
+        super(GeneratePayUrlController, self).__init__(request, OperationType.Pay, manager)
+
+    def _call(self):
+        form_data = self._verify_post_request(self.request_required)
+
+        bid = self._verify_bid(form_data.bid_id)
+        if bid.status != BidStatus.WaitingPayment:
+            raise ServiceException("Incorrect Bid status = %s, expected = %s" %
+                                   (bid.status, BidStatus.WaitingPayment))
+        encoded_id = BidIDCoder().encode_bid_id(bid.id)
+        return {'url': url_for('pay', bid_id=encoded_id, _external=True)}

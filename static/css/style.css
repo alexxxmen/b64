@@ -3031,7 +3031,11 @@ div#portfoliolist {
     border-radius: 0px;
 }
 
-
+#generate_url {
+    background-color: #da4847;
+    color: #fff;
+    font-size: 17px;
+}
 
 .bid-success-info {
     color: white;

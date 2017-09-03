@@ -2,25 +2,7 @@
 {% block title %}Оформление заявки{% endblock %}
 
 {% block content %}
-  <!--start-banner-->
-<div class="banner" id="home">
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <a href="/">PROFINSTA<span class="logo-postfix">.com</span></a>
-      </div>
-      <div class="navigation">
-        <span class="menu"></span>
-        <ul class="navig">
-          <li><a href="{{ url_for('index') }}" class="scroll">Вернуться на главную</a></li>
-        </ul>
-      </div>
 
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</div>
 <div class="bid-banner">
   <div class="container">
     <div class="row">
@@ -46,6 +28,9 @@
               <div class="form-group input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
                 <input class="form-control" type="text" id="account" name='account' placeholder="Аккаунт в инстаграм">
+              </div>
+              <div class="form-group input-group">
+                {{ recaptcha }}
               </div>
               <input type="submit" class="bid-btn submit-bid-btn" value="Отправить">
             </div>`

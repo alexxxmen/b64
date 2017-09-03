@@ -13,7 +13,9 @@ class BaseConstants(object):
 
 class BidStatus(BaseConstants):
     New = 1
-    Verified = 2
+    Waiting = 2
+    WaitingPayment = 3
+    Paid = 4
 
 
 class OperationType:

@@ -4,7 +4,7 @@ import hashlib
 
 from flask import redirect, render_template, url_for, session
 
-from config import ADMINS
+from config import MANAGERS
 from decorators import get_manager
 from constants import OperationType
 from controllers import TemplateController, ServiceException
@@ -32,7 +32,7 @@ class LoginController(TemplateController):
         return redirect(next_)
 
     def _verify_manager(self, login):
-        for aid, acc in ADMINS.items():
+        for aid, acc in MANAGERS.items():
             if acc['login'] == login:
                 return dict(id=aid, login=acc['login'], password=acc['password'])
         raise ServiceException("Manager with login=%s doesn't exist", u"Неверный Логин или Пароль.")

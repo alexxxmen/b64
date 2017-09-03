@@ -15,7 +15,7 @@ from controllers.pay import PayController
 from controllers.index import IndexController
 from controllers.login import LoginController
 from controllers.logout import LogoutController
-from controllers.manage_bids import (BidViewController, EditBidController)
+from controllers.manage_bids import (BidViewController, EditBidController, GeneratePayUrlController)
 from controllers.support import SendSupportMessageController
 
 
@@ -53,9 +53,9 @@ def common_error():
     return render_template("error.html", messages=get_flashed_messages())
 
 
-@app.route("/pay", methods=["GET", "POST"])
-def pay():
-    return PayController(request).call()
+@app.route("/pay/<bid_id>", methods=["GET"])
+def pay(bid_id):
+    return PayController(request).call(bid_id)
 
 
 @app.route("/xdoor/bids", methods=["GET", "POST"])
@@ -79,6 +79,13 @@ def login():
 @login_required
 def logout(manager):
     return LogoutController(request, manager).call()
+
+
+@app.route("/xdoor/pay_url", methods=["POST"])
+@jsonify_result
+@login_required
+def generate_pay_url(manager):
+    return GeneratePayUrlController(request, manager).call()
 
 
 @app.route("/logs/client_logs")

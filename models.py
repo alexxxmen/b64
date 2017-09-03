@@ -47,6 +47,7 @@ class Bid(_Model):
     status = SmallIntegerField(default=BidStatus.New)
     created = DateTimeField(default=peewee_datetime.datetime.now)
     updated = DateTimeField(null=True)
+    comment = TextField(null=True)
 
     @classmethod
     def new(cls, name, email, account):

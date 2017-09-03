@@ -1,44 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Оплата заявки{% endblock %}
 {% block content %}
-<!--start-banner-->
-<div class="banner" id="home">
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <a href="/">PROFINSTA<span class="logo-postfix">.com</span></a>
-      </div>
-      <div class="navigation">
-        <span class="menu"></span>
-        <ul class="navig">
-          <li><a href="{{ url_for('index') }}" class="scroll">Вернуться на главную</a></li>
-        </ul>
-      </div>
 
-      <div class="clearfix"></div>
-    </div>
-
-  </div>
-</div>
 <div class="bid-banner">
   <div class="container">
     <div class="row">
       <div class="absolute-center is-responsive">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
           <h3 class="text-center bid-label">Оплата</h3>
-          <form action="" method="POST">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+          <form action="{{ data.url }}" method="POST">
+            <input type="hidden" name="shop_id" value="{{ data.shop_id }}"/>
+            <input type="hidden" name="sign" value="{{ data.sign }}"/>
             <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-              <label for="bid">Введите номер заявки:</label>
+              <label for="bid">Сумма к оплате:</label>
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input class="form-control" type="text" id="bid" name='bid' pattern="^[\d]+$" placeholder="Номер заявки" required>
+                <input class="form-control" type="text" name="amount" value="{{ data.amount }}" required>
               </div>
 
-              <label for="email">Введите почту:</label>
+              <label for="email">Описание:</label>
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input class="form-control" type="email" id="email" name='email' placeholder="Почта" required>
+                <input class="form-control" type="text" name="description" value="{{ data.description }}" required>
               </div>
 
               <input type="submit" id="submit-bid-btn" class="btn btn-block" value="Перейти к оплате">

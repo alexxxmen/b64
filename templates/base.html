@@ -10,6 +10,25 @@
   {% endblock css %}
 </head>
   <body>
+    <!--start-banner-->
+    <div class="banner" id="home">
+      <div class="container">
+        <div class="header">
+          <div class="logo">
+            <a href="/">PROFINSTA<span class="logo-postfix">.com</span></a>
+          </div>
+          <div class="navigation">
+            <span class="menu"></span>
+            <ul class="navig">
+              <li><a href="{{ url_for('index') }}" class="scroll">Вернуться на главную</a></li>
+            </ul>
+          </div>
+
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
     {% block content %}{% endblock content %}
     {% block footer %}{% endblock footer %}
     {% block javascript %}
