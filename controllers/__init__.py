@@ -52,7 +52,8 @@ class BaseController(object):
                                    operation_type=self.operation_type,
                                    manager_id=manager['id'] if manager else None,
                                    created=datetime.datetime.now())
-        self.need_log = True
+
+        self.need_log = False if self.request.method == 'GET' else True
         self.confidential_fields = ()
 
     def _call(self, *args, **kwds):

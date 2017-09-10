@@ -61,6 +61,7 @@ class EditBidController(TemplateController):
         status = self._verify_form_status(form_data.status)
         account = self._verify_form_account(form_data.account)
         service = self._verify_form_service(form_data.service)
+        comment = self._verify_form_comment(form_data.comment)
 
         old = dict(
             account=bid.account,
@@ -72,6 +73,7 @@ class EditBidController(TemplateController):
         bid.account = account or bid.account
         bid.amount = amount or bid.amount
         bid.status = status or bid.status
+        bid.comment = comment or bid.comment
         bid.service_id = service
         bid.updated = datetime.now()
         bid.save()
@@ -132,6 +134,9 @@ class EditBidController(TemplateController):
         if not service_id or not services.get(int(service_id)):
             raise ServiceException("Invalid service_id=%s" % service_id)
         return int(service_id)
+
+    def _verify_form_comment(self, comment):
+        return comment if comment else None
 
     def _prepare_data(self, bid):
         bid.status_alias = BidStatus.get_desc(bid.status)

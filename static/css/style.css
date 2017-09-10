@@ -3021,6 +3021,14 @@ div#portfoliolist {
     padding: 40px;
 }
 
+.absolute-center.bid-responsive{
+    width: 80%;
+    min-width: 200px;
+    max-width: 1000px;
+    padding: 40px;
+    margin-top: 70px;
+}
+
 #main-container {
     width: 100%;
 }

@@ -6,7 +6,7 @@
 <div class="bid-banner">
   <div class="container">
     <div class="row">
-      <div class="absolute-center is-responsive">
+      <div class="absolute-center bid-responsive">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
           <h3 class="text-center bid-label">Заявка</h3>
           <form action="" method="POST">
@@ -31,7 +31,7 @@
               </div>
               <label for="service">Услуга:</label>
               <div class="form-group input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></span>
                 <select name="service" id="service" class="form-control">
                 {% for id, s in services.items() %}
                   <option value="{{ id }}" {% if id == service_id %}selected{% endif %}>{{ s }}</option>
@@ -42,12 +42,13 @@
                 {{ recaptcha }}
               </div>
               <input type="submit" class="bid-btn submit-bid-btn" value="Отправить">
-            </div>`
+            </div>
           </form>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 {% endblock %}
