@@ -33,7 +33,11 @@ class BidController(TemplateController):
 
         without_inform = []
         msg = "New bid #{id}\nName: {name}\nEmail: {email}\nInstagram account: {account}\nService: {service}".format(
-            id=bid.id, name=bid.name, email=bid.email, account=bid.account or '', service=form_service
+            id=bid.id,
+            name=bid.name,
+            email=bid.email,
+            account=bid.account or '',
+            service=Services.get_desc(int(form_service))
         )
         for t_id in TELEGRAM_MANAGER_IDS:
             r = self._send_inform_message(t_id, msg)
@@ -46,6 +50,6 @@ class BidController(TemplateController):
         return render_template("bid/success_bid.html", bid=bid)
 
     def _verify_service(self, services, service_id):
-        if not service_id or not services.get(service_id):
+        if not service_id or not services.get(int(service_id)):
             raise ServiceException("Unable add bid. Invalid service_id=%s" % service_id, u"Выберите услугу")
-        return service_id
+        return int(service_id)

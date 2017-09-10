@@ -6,23 +6,26 @@
   <div class="container">
     <div class="row">
       <div class="absolute-center is-responsive">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
+        <div class="col-sm-12 col-md-12 col-md-offset-3" id="bid-pay-info">
           <h3 class="text-center bid-label">Оплата</h3>
           <form action="{{ data.url }}" method="POST">
             <input type="hidden" name="shop_id" value="{{ data.shop_id }}"/>
             <input type="hidden" name="sign" value="{{ data.sign }}"/>
-            <div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3">
-              <label for="bid">Сумма к оплате:</label>
-              <div class="form-group input-group">
-                <input class="form-control" type="text" name="amount" value="{{ data.amount }}" required>
-              </div>
+            <input type="hidden" name="amount" value="{{ data.amount }}"/>
+            <input type="hidden" name="description" value="{{ data.description }}"/>
 
-              <label for="email">Описание:</label>
-              <div class="form-group input-group">
-                <input class="form-control" type="text" name="description" value="{{ data.description }}" required>
-              </div>
+            <div class="col-md-9 col-md-offset-2">
+              <p class="bid-pay-label">Сумма к оплате: <span>{{ data.amount }} USD</span></p>
+            </div>
 
-              <input type="submit" id="submit-bid-btn" class="btn btn-block" value="Перейти к оплате">
+            <div class="col-md-9 col-md-offset-2">
+              <p class="bid-pay-label">Описание: <span>{{ data.description }}</span></p>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-8 col-md-offset-2">
+                <input type="submit" id="submit-bid-btn" class="btn btn-block bid-btn" value="Оплатить">
+              </div>
             </div>
           </form>
         </div>

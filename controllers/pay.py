@@ -12,7 +12,12 @@ class PayController(TemplateController):
         super(PayController, self).__init__(request, OperationType.Pay)
 
     def _call(self, encoded_id):
-        bid_id = BidIDCoder().decode(encoded_id)
+        try:
+            bid_id = BidIDCoder().decode(encoded_id)
+        except ValueError:
+            self.log.exception("Error during decode bid_id")
+            raise ServiceException("Invalid encoded_id=%s" % encoded_id, u"Неверный url")
+
         bid = self._verify_bid(bid_id)
 
         data = dict(
