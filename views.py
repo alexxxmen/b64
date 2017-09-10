@@ -39,8 +39,9 @@ def index():
 
 
 @app.route("/bid", methods=["GET", "POST"])
-def bid():
-    return BidController(request).call()
+@app.route("/bid/<int:service_id>", methods=["GET", "POST"])
+def bid(service_id=None):
+    return BidController(request).call(service_id)
 
 
 @app.route("/support/send_message")
@@ -88,11 +89,12 @@ def generate_pay_url(manager):
     return GeneratePayUrlController(request, manager).call()
 
 
-@app.route("/logs/client_logs")
+@app.route("/logs/<log_type>")
 @jsonify_result
-def logs():
-    log_type = {'client': ClientLog, 'error': ErrorLog}
-    return {"logs": [l.to_dict() for l in ErrorLog.select().order_by(ErrorLog.id.desc())]}
+def logs(log_type):
+    log_types = {'client': ClientLog, 'error': ErrorLog}
+    model = log_types[log_type]
+    return {"logs": [l.to_dict() for l in model.select().order_by(model.id.desc())]}
 
 
 @app.errorhandler(404)

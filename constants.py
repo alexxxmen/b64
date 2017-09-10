@@ -27,3 +27,10 @@ class OperationType:
     CreateBid = 6
     ViewBid = 7
     EditBid = 8
+
+
+class Services(BaseConstants):
+    Free = 1
+    Basic = 2
+    Pro = 3
+    ProPlus = 4

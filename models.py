@@ -48,14 +48,16 @@ class Bid(_Model):
     created = DateTimeField(default=peewee_datetime.datetime.now)
     updated = DateTimeField(null=True)
     comment = TextField(null=True)
+    service_id = SmallIntegerField()
 
     @classmethod
-    def new(cls, name, email, account):
+    def new(cls, name, email, account, service):
         with db.atomic():
             return cls.create(
                 name=name,
                 email=email,
-                account=account
+                account=account,
+                service=service
             )
 
 

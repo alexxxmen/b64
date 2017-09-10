@@ -6,7 +6,7 @@ from flask import render_template, flash, url_for
 
 from models import Bid
 from utils import format_datetime
-from constants import OperationType, BidStatus
+from constants import OperationType, BidStatus, Services
 from controllers import TemplateController, ServiceException, JsonController, BidIDCoder
 
 
@@ -22,9 +22,10 @@ class BidViewController(TemplateController):
         form_data = self._verify_post_request(("bid",))
         bid = self._verify_bid(form_data.bid)
         statuses = BidStatus.to_dict()
+        services = Services.to_dict()
 
         data = self._prepare_data(bid)
-        return render_template("bid/bid_preview.html", bid=data, statuses=statuses)
+        return render_template("bid/bid_preview.html", bid=data, statuses=statuses, services=services)
 
     def _verify_bid(self, bid_id):
         if not bid_id:
@@ -54,21 +55,41 @@ class EditBidController(TemplateController):
     def _call(self):
         form_data = self._verify_post_request(("bid", "amount", "status", "account"))
         bid = self._verify_bid(form_data.bid)
+        self.db_logger.bid = bid.id
+
         amount = self._verify_form_amount(form_data.amount)
         status = self._verify_form_status(form_data.status)
         account = self._verify_form_account(form_data.account)
+        service = self._verify_form_service(form_data.service)
 
+        old = dict(
+            account=bid.account,
+            amount=bid.amount,
+            status=bid.status,
+            comment=bid.comment,
+            service=bid.service_id
+        )
         bid.account = account or bid.account
         bid.amount = amount or bid.amount
         bid.status = status or bid.status
+        bid.service_id = service
         bid.updated = datetime.now()
         bid.save()
+
+        new = dict(
+            account=bid.account,
+            amount=bid.amount,
+            status=bid.status,
+            comment=bid.comment,
+            service=bid.service_id
+        )
+        self._log_result(new, old)
 
         statuses = BidStatus.to_dict()
         data = self._prepare_data(bid)
 
         flash(u"Заявка %s успешно сохранена" % bid.id)
-        return render_template("bid/bid_preview.html", bid=data, statuses=statuses)
+        return render_template("bid/bid_preview.html", bid=data, statuses=statuses, services=Services.to_dict())
 
     def _verify_form_amount(self, amount):
         if not amount:
@@ -106,6 +127,12 @@ class EditBidController(TemplateController):
     def _verify_form_account(self, account):
         return account or None
 
+    def _verify_form_service(self, service_id):
+        services = Services.to_dict()
+        if not service_id or not services.get(int(service_id)):
+            raise ServiceException("Invalid service_id=%s" % service_id)
+        return int(service_id)
+
     def _prepare_data(self, bid):
         bid.status_alias = BidStatus.get_desc(bid.status)
         bid.created = format_datetime(bid.created)
@@ -126,5 +153,9 @@ class GeneratePayUrlController(JsonController):
         if bid.status != BidStatus.WaitingPayment:
             raise ServiceException("Incorrect Bid status = %s, expected = %s" %
                                    (bid.status, BidStatus.WaitingPayment))
+
+        if not bid.amount or bid.amount < 0:
+            raise ServiceException("Unable generate url. Invalid amount.")
+
         encoded_id = BidIDCoder().encode_bid_id(bid.id)
         return {'url': url_for('pay', bid_id=encoded_id, _external=True)}

@@ -34,6 +34,14 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="service" >Услуга:</label>
+              <select name="service" id="service" class="form-control">
+                {% for id, s in services.items() %}
+                  <option value="{{ id }}" {% if bid.service_id == id %}selected{% endif %}>{{ s }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group">
               <label for="created">Создана:</label>
               <input class="form-control" type="text" id="created" value="{{ bid.created }}" disabled>
             </div>
