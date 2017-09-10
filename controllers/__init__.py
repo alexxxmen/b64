@@ -38,7 +38,7 @@ class ControllerResult(Struct):
 
 
 class BaseController(object):
-    def __init__(self, request, operation_type, account=None):
+    def __init__(self, request, operation_type, manager=None):
         self.class_name = self.__class__.__name__
         self.log = Logger(fh, self.class_name)
         self.request = request
@@ -50,7 +50,7 @@ class BaseController(object):
                                    request_method=self.request.method,
                                    request_data=get_request_data(self.request),
                                    operation_type=self.operation_type,
-                                   account=account,
+                                   manager_id=manager['id'] if manager else None,
                                    created=datetime.datetime.now())
         self.need_log = True
         self.confidential_fields = ()
@@ -118,6 +118,7 @@ class BaseController(object):
         try:
             response = requests.get(url)
         except Exception as ex:
+            self.log.warn("Error during send telegram msg: %s" % ex.message)
             ErrorLog.create(request_data=get_request_data(self.request),
                             request_ip=self.request.remote_addr,
                             request_url=self.request.url,
@@ -136,6 +137,12 @@ class BaseController(object):
     def _verify_recaptcha(self):
         if not recaptcha.verify():
             raise IncorrectCaptchaException("Recaptcha verification failed")
+
+    def _log_result(self, new_val, old_val=None):
+        result = {"new_val": new_val}
+        if old_val is not None:
+            result.update({"old_val": old_val})
+        self.db_logger.operation_result = result
 
 
 class TemplateController(BaseController):
