@@ -44,7 +44,7 @@ def bid(service_id=None):
     return BidController(request).call(service_id)
 
 
-@app.route("/support/send_message")
+@app.route("/support/send_message", methods=["POST"])
 def send_support_message():
     return SendSupportMessageController(request).call()
 

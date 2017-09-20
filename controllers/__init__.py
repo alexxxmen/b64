@@ -115,7 +115,8 @@ class BaseController(object):
                             request_headers=self.request.headers)
 
     def _send_inform_message(self, chat_id, text):
-        url = bot_api_url + bot_token + '/sendMessage?' + urllib.urlencode(dict(chat_id=chat_id, text=str(text)))
+        url = bot_api_url + bot_token + '/sendMessage?' + urllib.urlencode(dict(chat_id=chat_id,
+                                                                                text=text.encode("utf-8")))
         try:
             response = requests.get(url)
         except Exception as ex:
@@ -132,8 +133,7 @@ class BaseController(object):
         if response.status_code == 200:
             return True
 
-        self.log.debug("Error during send alarm msg. Error description = %s" %
-                       response.json().get('description', ''))
+        self.log.debug("Error during send alarm msg. Response text = %s" % response.text)
 
     def _verify_recaptcha(self):
         if not recaptcha.verify():

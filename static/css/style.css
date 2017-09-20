@@ -1369,7 +1369,7 @@ div#portfoliolist {
     margin-top: 10%;
 }
 
-.contact-bottom input[type="text"] {
+.contact-bottom .sup-input {
     width: 50%;
     color: #999999;
     outline: none;
@@ -3000,8 +3000,14 @@ div#portfoliolist {
 }
 
 .bid-label {
-    color: #f4f8ff;
     font-size: 32px;
+}
+
+#bid-pay-info{
+    width: 500px;
+    min-height: 300px;
+    background-color: white;
+    padding: 30px;
 }
 
 .absolute-center {
@@ -3046,7 +3052,10 @@ div#portfoliolist {
 }
 
 .bid-success-info {
-    color: white;
+    width: 700px;
+    min-height: 300px;
+    background-color: white;
+    padding: 30px;
 }
 
 #top-panel {
@@ -3178,6 +3187,10 @@ div#portfoliolist {
 
 }
 
+.bid-pay-label{
+    font-size: 18px;
+}
+
 #pay-bid-btn {
     height: 30%;
     border-radius: 0 0 15px 15px;
@@ -3273,3 +3286,16 @@ a.bid-btn:hover{
 }
 
 /* End Buttons*/
+
+/*@font-face {*/
+    /*font-family: Billabong; !* Гарнитура шрифта *!*/
+    /*src: url(../fonts/9424.ttf); !* Путь к файлу со шрифтом *!*/
+/*}*/
+
+/*.logo-text-style{*/
+    /*font-family: Billabong;*/
+    /*letter-spacing: 7px;*/
+    /*font-size: 50px;*/
+    /*!*color: #004143;*!*/
+    /*color: #f0f0f0;*/
+/*}*/
