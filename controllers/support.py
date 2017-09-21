@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 
-from flask import redirect, url_for, flash
+from flask import redirect, url_for
 
 from constants import OperationType
 from config import TELEGRAM_MANAGER_IDS
@@ -14,6 +14,7 @@ class SendSupportMessageController(TemplateController):
         super(SendSupportMessageController, self).__init__(request, OperationType.SupportMessage)
 
     def _call(self):
+        self._verify_recaptcha()
         form_data = self._verify_post_request(self.request_required)
         name = self._verify_form_name(form_data.name)
         email = self._verify_form_email(form_data.email)
