@@ -21,18 +21,18 @@ class BidController(TemplateController):
         self.error_view = self.request.full_path
         self._verify_recaptcha()
         form_data = self._verify_post_request(("name", "email"))
-        name = form_data.name.encode("utf-8")
+        name = form_data.name
         email = self._verify_email(form_data.email)
         account = form_data.get("account", None)
         if account:
-            account = account.encode("utf-8")
+            account = account
 
         form_service = self._verify_service(services, form_data.service)
         bid = Bid.new(name, email, account, form_service)
         self.db_logger.bid = bid.id
 
         without_inform = []
-        msg = "New bid #{id}\nName: {name}\nEmail: {email}\nInstagram account: {account}\nService: {service}".format(
+        msg = u"New bid #{id}\nName: {name}\nEmail: {email}\nInstagram account: {account}\nService: {service}".format(
             id=bid.id,
             name=bid.name,
             email=bid.email,
