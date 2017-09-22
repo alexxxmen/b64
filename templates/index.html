@@ -5,28 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="keywords" content=""/>
-  <script type="application/x-javascript"> addEventListener("load", function () {
-    setTimeout(hideURLbar, 0);
-  }, false);
-  function hideURLbar() {
-    window.scrollTo(0, 1);
-  } </script>
+{#  <script type="application/x-javascript"> addEventListener("load", function () {#}
+{#    setTimeout(hideURLbar, 0);#}
+{#  }, false);#}
+{#  function hideURLbar() {#}
+{#    window.scrollTo(0, 1);#}
+{#  } </script>#}
   <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel='stylesheet' type='text/css'/>
   <link href="{{ url_for('static', filename='css/style.css') }}" rel='stylesheet' type='text/css'/>
-  <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
   <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic'
         rel='stylesheet' type='text/css'>
   <!---- start-smoth-scrolling---->
-  <script type="text/javascript" src="{{ url_for('static', filename='js/move-top.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
-  <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-      $(".scroll").click(function (event) {
-        event.preventDefault();
-        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
-      });
-    });
-  </script>
 
   <!--start-smoth-scrolling-->
 </head>
@@ -36,8 +25,8 @@
   <div class="container">
     <div class="header">
       <div class="logo">
-        <a href="/"><span class="i-text-style">PROFINSTA</span><span class="logo-postfix">.com</span></a>
-{#        <a href="/"><span class="logo-text-style">Profinsta.com</span></a>#}
+        <a href="/"><span class="i-text-style">Profinsta</span><span class="logo-postfix">.com</span></a>
+{#        <a href="/"><span class="logo-text-style">Profinsta<span class="logo-postfix">.com</span></span></a>#}
       </div>
       <div class="navigation">
         <span class="menu"></span>
@@ -59,7 +48,7 @@
         <div class="banner-bottom">
           <h1>Покори "Instagram" вместе с Profinsta</h1>
           <p>Мечтаете стать популярным? Получить клиентов для бизнеса? Донести свою идею людям?
-            Сервис Profinsta работает в режиме 24/7, а Вы получаете результат.</p>
+            Сервис Profinsta работает в режиме 24/7, Вы получаете результат.</p>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -67,35 +56,11 @@
     </div>
   </div>
 </div>
-<!-- script-for-menu -->
-<script>
-  $("span.menu").click(function () {
-    $(" ul.navig").slideToggle("slow", function () {
-    });
-  });
-</script>
-<!-- script-for-menu -->
+
 <!--Slider-Starts-Here-->
 <script src="{{ url_for('static', filename='js/responsiveslides.min.js') }}"></script>
 <script>
-  // You can also use "$(window).load(function() {"
-  $(function () {
-    // Slideshow 4
-    $("#slider4").responsiveSlides({
-      auto: true,
-      pager: true,
-      nav: true,
-      speed: 500,
-      namespace: "callbacks",
-      before: function () {
-        $('.events').append("<li>before event fired.</li>");
-      },
-      after: function () {
-        $('.events').append("<li>after event fired.</li>");
-      }
-    });
 
-  });
 </script>
 <!--End-slider-script-->
 <!--end-banner-->
@@ -117,13 +82,10 @@
   <div class="container" id="advantages">
     <div class="about-bottom">
       <div class="about-main">
-
         <h3>Наши Возможности</h3>
       </div>
       <div class="abt">
-
         <div class="col-md-4 about-left">
-
           <div class="abt-one">
             <div class="abt-left">
               <span class="hnd"> </span>
@@ -311,58 +273,58 @@
   </div>
 </div>
 <!--end-special-->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/swipebox.css') }}">
-<script src="{{ url_for('static', filename='js/jquery.swipebox.min.js') }}"></script>
-<script type="text/javascript">
-  jQuery(function ($) {
-    $(".swipebox").swipebox();
-  });
-</script>
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/swipebox.css') }}">#}
+{#<script src="{{ url_for('static', filename='js/jquery.swipebox.min.js') }}"></script>#}
+{#<script type="text/javascript">#}
+{#  jQuery(function ($) {#}
+{#    $(".swipebox").swipebox();#}
+{#  });#}
+{#</script>#}
 <!-- Portfolio Ends Here -->
-<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mixitup.min.js') }}"></script>
-<script type="text/javascript">
-  $(function () {
-
-    var filterList = {
-
-      init: function () {
-
-        // MixItUp plugin
-        // http://mixitup.io
-        $('#portfoliolist').mixitup({
-          targetSelector: '.portfolio',
-          filterSelector: '.filter',
-          effects: ['fade'],
-          easing: 'snap',
-          // call the hover effect
-          onMixEnd: filterList.hoverEffect()
-        });
-
-      },
-
-      hoverEffect: function () {
-
-        // Simple parallax effect
-        $('#portfoliolist .portfolio').hover(
-          function () {
-            $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
-            $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');
-          },
-          function () {
-            $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
-            $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');
-          }
-        );
-
-      }
-
-    };
-
-// Run the show!
-    filterList.init();
-
-  });
-</script>
+{#<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.mixitup.min.js') }}"></script>#}
+{#<script type="text/javascript">#}
+{#  $(function () {#}
+{##}
+{#    var filterList = {#}
+{##}
+{#      init: function () {#}
+{##}
+{#        // MixItUp plugin#}
+{#        // http://mixitup.io#}
+{#        $('#portfoliolist').mixitup({#}
+{#          targetSelector: '.portfolio',#}
+{#          filterSelector: '.filter',#}
+{#          effects: ['fade'],#}
+{#          easing: 'snap',#}
+{#          // call the hover effect#}
+{#          onMixEnd: filterList.hoverEffect()#}
+{#        });#}
+{##}
+{#      },#}
+{##}
+{#      hoverEffect: function () {#}
+{##}
+{#        // Simple parallax effect#}
+{#        $('#portfoliolist .portfolio').hover(#}
+{#          function () {#}
+{#            $(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');#}
+{#            $(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');#}
+{#          },#}
+{#          function () {#}
+{#            $(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');#}
+{#            $(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');#}
+{#          }#}
+{#        );#}
+{##}
+{#      }#}
+{##}
+{#    };#}
+{##}
+{#// Run the show!#}
+{#    filterList.init();#}
+{##}
+{#  });#}
+{#</script>#}
 
 <!--start-pricing-->
 <div class="pricing" id="">
@@ -525,7 +487,7 @@
     </div>
   </div>
 </div>
-<!--end-testimonials-->
+<!--end-imonials-->
 <!--start-account-->
 <div class="account" id="order">
   <div class="container">
@@ -561,7 +523,7 @@
       <p class="faq-sub-elem hidden">
         Однозначно! Сервис Profinsta.com подходит для любых типов бизнесов,
         начиная от маленьких и локальных компаний и одиночных бизнесов
-        (автомойка, магазин, салон красоты, пивной ларёк, ремонт одежды, тренажерный зал, услуги красоты),
+        (автомойка, магазин, салон красоты, ремонт одежды, тренажерный зал, услуги красоты),
         средних по охвату аудитории компаний (туристические агентства,
         спортивные комплексы, интернет-магазины, любые услуги), и крупных игроков
         (бренды, международные и национальные компании и организации).</p>
@@ -618,10 +580,18 @@
 <!--end-contact-->
 
 <div class="footer">
+  <script src="{{ url_for('static', filename='js/jquery-1.11.0.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/move-top.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
-      $().UItoTop({easingType: 'easeOutQuart'});
+    jQuery(document).ready(function ($) {
+      $(".scroll").click(function () {
+        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+      });
     });
+{#    $(document).ready(function () {#}
+{#      $().UItoTop({easingType: 'easeOutQuart'});#}
+{#    });#}
     $('.faq-elem').on('click', function () {
       var p = $(this).find('.faq-sub-elem');
       if (p.hasClass('hidden')) {
@@ -629,8 +599,28 @@
       } else {
         p.addClass('hidden');
       }
+    });
+    $("span.menu").click(function () {
+      $(" ul.navig").slideToggle("slow", function () {});
+    });
+    // You can also use "$(window).load(function() {"
+  $(function () {
+    // Slideshow 4
+    $("#slider4").responsiveSlides({
+      auto: true,
+      pager: true,
+      nav: true,
+      speed: 500,
+      namespace: "callbacks",
+      before: function () {
+        $('.events').append("<li>before event fired.</li>");
+      },
+      after: function () {
+        $('.events').append("<li>after event fired.</li>");
+      }
+    });
 
-    })
+  });
   </script>
   <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 </div>
