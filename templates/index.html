@@ -59,7 +59,7 @@
 </div>
 
 <!--Slider-Starts-Here-->
-<script src="{{ url_for('static', filename='js/responsiveslides.min.js') }}"></script>
+{#<script src="{{ url_for('static', filename='js/responsiveslides.min.js') }}"></script>#}
 <script>
 
 </script>
@@ -605,23 +605,23 @@
       $(" ul.navig").slideToggle("slow", function () {});
     });
     // You can also use "$(window).load(function() {"
-  $(function () {
-    // Slideshow 4
-    $("#slider4").responsiveSlides({
-      auto: true,
-      pager: true,
-      nav: true,
-      speed: 500,
-      namespace: "callbacks",
-      before: function () {
-        $('.events').append("<li>before event fired.</li>");
-      },
-      after: function () {
-        $('.events').append("<li>after event fired.</li>");
-      }
-    });
-
-  });
+{#  $(function () {#}
+{#    // Slideshow 4#}
+{#    $("#slider4").responsiveSlides({#}
+{#      auto: true,#}
+{#      pager: true,#}
+{#      nav: true,#}
+{#      speed: 500,#}
+{#      namespace: "callbacks",#}
+{#      before: function () {#}
+{#        $('.events').append("<li>before event fired.</li>");#}
+{#      },#}
+{#      after: function () {#}
+{#        $('.events').append("<li>after event fired.</li>");#}
+{#      }#}
+{#    });#}
+{##}
+{#  });#}
   </script>
   <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 </div>

@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*-
 
+from flask_mail import Message
 from flask import render_template
 
 from models import Bid
-from config import TELEGRAM_MANAGER_IDS
+from config import TELEGRAM_MANAGER_IDS, ADMIN_EMAILS, MAIL_USERNAME
 from constants import OperationType, Services
 from controllers import TemplateController, ServiceException
 
@@ -45,7 +46,10 @@ class BidController(TemplateController):
                 without_inform.append(t_id)
 
         if without_inform:
-            self._send_email("Didn't send telegram msg to %s" % without_inform)
+            msg = Message(sender=MAIL_USERNAME, recipients=ADMIN_EMAILS)
+            msg.subject = "Error during send telegram msg"
+            msg.html = "Didn't send telegram msg to %s" % without_inform
+            self._send_email(msg)
 
         return render_template("bid/success_bid.html", bid=bid)
 
